@@ -9,11 +9,14 @@ quiet translucent controls, folder albums and optional offline AI search.
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-555555)](LICENSE)
 [![Local tests](https://img.shields.io/badge/local_tests-63_passed-555555)](#验证与贡献)
 
-![Luma 实际照片墙演示](docs/media/luma-wall.jpg)
+[![Luma 实际照片墙演示](docs/media/luma-preview.gif)](https://github.com/Loya-art/luma/releases/tag/v1.2.3)
 
 [观看实际操作演示](https://github.com/Loya-art/luma/releases/tag/v1.2.3)
 · [反馈问题](https://github.com/Loya-art/luma/issues)
 · [English overview](#english)
+
+演示约 52 秒，1920×1080 / 30 fps，以实际操作录屏为主，展示照片墙、相簿切换、
+视频播放、目录预览和真实本地搜索。公开成片使用独立示例图库，本机目录已作隐私遮挡。
 
 ## 灵感来源
 

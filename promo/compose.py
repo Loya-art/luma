@@ -59,9 +59,13 @@ for start in np.arange(0, duration, 6.0):
     sound += bell[:, None]
 fade = np.minimum(t / 1.5, 1) * np.minimum((duration - t) / 2.0, 1)
 sound *= np.clip(fade, 0, 1)[:, None]
+sound *= 4.0
 with wave.open(str(work / 'ambient.wav'), 'wb') as output:
     output.setnchannels(2); output.setsampwidth(2); output.setframerate(rate)
     output.writeframes((np.clip(sound, -1, 1) * 32767).astype('<i2').tobytes())
 
-subprocess.run([str(ffmpeg), '-y', '-i', 'luma-raw.mp4', '-i', 'ambient.wav', '-vf', 'subtitles=captions.ass', '-c:v', 'libx264', '-preset', 'medium', '-threads', '6', '-crf', '19', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', '-metadata', 'title=Luma — actual desktop demonstration', '-metadata', 'comment=Actual installed application, separate public-media library. Inspiration: Folia.', '../luma-demo.mp4'], cwd=work, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+# Only the OS's real folder-location area is redacted. The actual demo scan
+# result thumbnails/checkboxes below it remain visible and unchanged.
+filters = "[0:v]split[main][mask];[mask]crop=700:550:640:40,boxblur=24:3[private];[main][private]overlay=640:40:enable='between(t,29.2,34)',subtitles=captions.ass[v]"
+subprocess.run([str(ffmpeg), '-y', '-i', 'luma-raw.mp4', '-i', 'ambient.wav', '-filter_complex', filters, '-map', '[v]', '-map', '1:a', '-c:v', 'libx264', '-preset', 'medium', '-threads', '6', '-crf', '19', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', '-metadata', 'title=Luma — actual desktop demonstration', '-metadata', 'comment=Actual installed application, separate public-media library. OS folder paths redacted. Inspiration: Folia.', '../luma-demo.mp4'], cwd=work, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 print(json.dumps({'video': str(project / 'promo' / 'luma-demo.mp4'), 'duration': duration, 'resolution': '1920x1080', 'fps': 30}))
