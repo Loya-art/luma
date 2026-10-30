@@ -5,13 +5,16 @@
 A local-first photo and video library for Windows, with an infinite mosaic wall,
 quiet translucent controls, folder albums and optional offline AI search.
 
-[![Windows](https://img.shields.io/badge/Windows-desktop-222222)](#从源码运行)
+[![Windows](https://img.shields.io/badge/Windows-desktop-222222)](#下载与安装)
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-555555)](LICENSE)
 [![Local tests](https://img.shields.io/badge/local_tests-63_passed-555555)](#验证与贡献)
 
-[![Luma 实际照片墙演示](docs/media/luma-preview.gif)](https://github.com/Loya-art/luma/releases/tag/v1.2.3)
+[**下载 Windows x64 安装包**](https://github.com/Loya-art/luma/releases/download/v1.2.3/Luma-1.2.3-Setup.exe)
 
-[观看实际操作演示](https://github.com/Loya-art/luma/releases/tag/v1.2.3)
+[![Luma 实际照片墙演示](docs/media/luma-preview.gif)](https://github.com/Loya-art/luma/releases/download/v1.2.3/Luma-demo-1080p.mp4)
+
+[版本与下载](https://github.com/Loya-art/luma/releases/tag/v1.2.3)
+· [观看实际操作演示](https://github.com/Loya-art/luma/releases/download/v1.2.3/Luma-demo-1080p.mp4)
 · [反馈问题](https://github.com/Loya-art/luma/issues)
 · [English overview](#english)
 
@@ -42,10 +45,18 @@ Luma 将这种浏览体验用于电脑上的本地照片、视频与文件夹相
 
 ![相册总览](docs/media/luma-albums.jpg)
 
+## 下载与安装
+
+适用于 Windows 10/11 x64。下载
+[Luma-1.2.3-Setup.exe](https://github.com/Loya-art/luma/releases/download/v1.2.3/Luma-1.2.3-Setup.exe)，
+双击安装，然后从桌面的 **Luma** 打开。普通使用无需安装 Node.js、Python 或 FFmpeg。
+本地 AI 模型在首次启用识别时下载。
+
+已有版本可安装到原位置升级，继续使用已有图库、分类和导入记录。
+
 ## 从源码运行
 
-当前公开版本提供完整源码与实际录屏演示。目标平台为 Windows 10/11 x64，
-开发环境为 Node.js 24 或更新版本。
+也可以自行运行或构建源码。开发环境为 Windows 和 Node.js 24 或更新版本。
 
 ```powershell
 git clone https://github.com/Loya-art/luma.git

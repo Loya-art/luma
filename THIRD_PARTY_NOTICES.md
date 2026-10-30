@@ -30,11 +30,16 @@ licenses supplied with installed packages when distributing compiled software.
 
 ## Separate runtime programs
 
-- **FFmpeg / ffprobe** are launched as separate processes. The build used locally
-  is a GPLv3-enabled Gyan build. This source repository does not redistribute the
-  executables. Builds and source information: https://www.gyan.dev/ffmpeg/builds/
-  and https://ffmpeg.org/legal.html. Distributors must provide the notices and
-  corresponding source required by the particular FFmpeg build they distribute.
+- **FFmpeg / ffprobe** are launched as separate processes. The Windows installer
+  bundles Gyan's FFmpeg 9.0.2 full build, licensed under GPLv3. The Git source tree
+  omits the executables. The distributor identifies the corresponding FFmpeg
+  source as commit `946fcce07b`:
+  https://github.com/FFmpeg/FFmpeg/commit/946fcce07b
+  (source archive: https://github.com/FFmpeg/FFmpeg/archive/946fcce07b.tar.gz).
+  The build variants, linked libraries and distribution information are at
+  https://www.gyan.dev/ffmpeg/builds/; licensing information is at
+  https://ffmpeg.org/legal.html. The full GPLv3 text is preserved in
+  `resources/binaries/FFmpeg-LICENSE.txt` and bundled with the installer.
 - **Android Platform Tools / ADB** are obtained from Google's official archive;
   its bundled `NOTICE.txt` is preserved as `resources/binaries/ADB-LICENSE.txt`.
   https://developer.android.com/tools/releases/platform-tools
