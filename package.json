@@ -1,0 +1,132 @@
+{
+  "name": "shiguang-album",
+  "version": "1.2.3",
+  "description": "Luma · 本地图片与视频相册",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "electron .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:layout": "tsx --test tests/layout.test.ts",
+    "prepare:binaries": "node scripts/prepare-binaries.mjs",
+    "prepare:icon": "node scripts/create-app-icon.mjs",
+    "pack": "npm run build && npm run prepare:binaries && npm run prepare:phone && npm run prepare:ai && npm run prepare:icon && electron-builder --win --dir",
+    "dist": "npm run build && npm run prepare:binaries && npm run prepare:phone && npm run prepare:ai && npm run prepare:icon && electron-builder --win nsis",
+    "dist:portable": "npm run build && npm run prepare:binaries && npm run prepare:phone && npm run prepare:ai && npm run prepare:icon && electron-builder --win portable",
+    "prepare:phone": "node scripts/prepare-adb.mjs",
+    "prepare:ai": "node scripts/prepare-ai-runtime.mjs",
+    "pretest": "node scripts/prepare-test-fixtures.mjs"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "exifr": "^7.1.3",
+    "libheif-js": "^1.19.8",
+    "lucide-react": "^0.468.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "45.0.0",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.58.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.3.0"
+  },
+  "build": {
+    "appId": "local.shiguang.album",
+    "productName": "Luma",
+    "artifactName": "Luma-${version}-${arch}.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/binaries",
+        "to": "binaries",
+        "filter": [
+          "*.exe",
+          "*.dll",
+          "*.txt",
+          "*-DOWNLOAD.json"
+        ]
+      },
+      {
+        "from": "resources/ai",
+        "to": "ai",
+        "filter": [
+          "*.py",
+          "*.txt"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/sharp/**/*",
+      "node_modules/@img/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.ico",
+      "signExecutable": false,
+      "executableName": "Luma"
+    },
+    "nsis": {
+      "artifactName": "Luma-${version}-Setup.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Luma",
+      "uninstallDisplayName": "Luma ${version}",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "installerLanguages": [
+        "zh_CN",
+        "en_US"
+      ],
+      "language": "2052",
+      "packElevateHelper": false
+    },
+    "portable": {
+      "artifactName": "Luma-${version}-Portable.${ext}",
+      "requestExecutionLevel": "user"
+    },
+    "electronDist": "node_modules/electron/dist"
+  },
+  "license": "AGPL-3.0-only",
+  "author": "Loya-art",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loya-art/luma.git"
+  },
+  "homepage": "https://github.com/Loya-art/luma#readme",
+  "bugs": {
+    "url": "https://github.com/Loya-art/luma/issues"
+  }
+}

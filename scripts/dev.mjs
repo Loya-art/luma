@@ -1,0 +1,10 @@
+import { context } from 'esbuild';
+import { createServer } from 'vite';
+import { spawn } from 'node:child_process';
+import electron from 'electron';
+const build = await context({ entryPoints: ['electron/main.ts', 'electron/preload.ts', 'electron/worker.ts'], outdir: 'dist-electron', outExtension: { '.js': '.cjs' }, bundle: true, platform: 'node', format: 'cjs', target: 'node24', packages: 'external', sourcemap: true });
+await build.rebuild();
+const server = await createServer();
+await server.listen();
+const child = spawn(electron, ['.'], { stdio: 'inherit', env: { ...process.env, ELECTRON_RENDERER_URL: server.resolvedUrls.local[0] } });
+child.on('exit', async code => { await server.close(); await build.dispose(); process.exit(code ?? 0); });

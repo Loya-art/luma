@@ -1,0 +1,6 @@
+Local OCR: PP-OCRv5 mobile detection/recognition and PP-OCR classification, PaddlePaddle/RapidAI, Apache-2.0.
+ONNX models: https://www.modelscope.cn/models/RapidAI/RapidOCR (pinned v3.4.0, SHA-256 checked).
+ChineseCLIP: OFA-Sys/chinese-clip-vit-base-patch16, MIT. Pinned Hugging Face revision 36e679e65c2a2fead755ae21162091293ad37834.
+Weights are downloaded only when the user enables local analysis. Originals stay local during local indexing.
+ChineseCLIP provides similarity-based retrieval and suggested labels, not guaranteed object recognition.
+Runtime: Astral uv / managed CPython, torch CPU, Transformers, RapidOCR, ONNX Runtime. See respective installed packages for licenses.

@@ -1,0 +1,5 @@
+uv 0.12.7, Astral Software Inc., MIT OR Apache-2.0.
+https://github.com/astral-sh/uv
+https://github.com/astral-sh/uv/blob/0.12.7/LICENSE-MIT
+https://github.com/astral-sh/uv/blob/0.12.7/LICENSE-APACHE
+Managed CPython and model packages are downloaded only when local analysis is enabled.

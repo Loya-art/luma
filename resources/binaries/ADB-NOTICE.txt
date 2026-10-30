@@ -1,0 +1,4 @@
+Android Debug Bridge is invoked as a separate local process.
+Official distribution: https://developer.android.com/tools/releases/platform-tools
+Usage: https://developer.android.com/tools/adb
+See ADB-LICENSE.txt for notices.

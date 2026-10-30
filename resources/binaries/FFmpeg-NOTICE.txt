@@ -1,0 +1,4 @@
+FFmpeg and ffprobe are separate programs used for local media processing.
+Build distributor: https://www.gyan.dev/ffmpeg/builds/
+Source and licensing: https://ffmpeg.org/legal.html
+This application invokes the tools as separate processes.
